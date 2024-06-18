@@ -1,9 +1,11 @@
 import React from 'react';
-import TodoItem from './Todo/TodoItem';
+import TodoItem from './todo/TodoItem';
 
 function App() {
   return (
-    <TodoItem />
+    <>
+      <TodoItem />
+    </>
   );
 }
 
