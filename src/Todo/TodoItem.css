@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+
+.item {
+    flex-basis: auto;
+    flex: none;
+}
+
+.submit-button {
+    padding-top: 2rem;
+}
