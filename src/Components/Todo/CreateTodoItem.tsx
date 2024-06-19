@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import CreateTodo from '../Network/CreateTodo'
-import './TodoItem.css';
+import CreateTodo from '../../Network/CreateTodo'
+import './CSS/CreateTodoItem.css'
 
-const TodoItem = () => {
+const CreateTodoItem = () => {
     const [ taskDescription, setTastDescription ] = useState<string>('');
     const [ deadline, setDeadline ] = useState<string>('');
     const [ areThereAdditionalDetails, setAreThereAdditionalDetails ] = useState<boolean>(false);
@@ -26,6 +26,10 @@ const TodoItem = () => {
         setAdditionalDetails(details.target.value);
     }
 
+    const addTodoItem = () => {
+        CreateTodo(taskDescription, deadline, areThereAdditionalDetails, additionalDetails)
+    }
+
     return (
         <div className='container'>
             <div className='item'>
@@ -40,11 +44,11 @@ const TodoItem = () => {
                 {areThereAdditionalDetails && <input type="text" value={additionalDetails} onChange={handleAdditionalDetails}></input>}
             </div>
             <div className='item submit-button'>
-                <button onClick={() => {CreateTodo(taskDescription, deadline, areThereAdditionalDetails, additionalDetails)}}>Create</button>
+                <button onClick={addTodoItem}>Create</button>
             </div>
         </div>
     )
 }
 
 
-export default TodoItem;
+export default CreateTodoItem;

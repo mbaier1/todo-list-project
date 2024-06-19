@@ -1,10 +1,12 @@
 import React from 'react';
-import TodoItem from './todo/TodoItem';
+import CreateTodoItem from './Components/Todo/CreateTodoItem';
+import TodoChecklist from './Components/Todo/TodoChecklist';
 
 function App() {
   return (
     <>
-      <TodoItem />
+      <CreateTodoItem />
+      <TodoChecklist />
     </>
   );
 }

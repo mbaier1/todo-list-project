@@ -1,0 +1,11 @@
+.todo-container {
+    top: 10px;
+    width: 50rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    border-style: solid;
+    border-color: #ddffff;
+
+}
