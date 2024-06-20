@@ -1,4 +1,4 @@
-const CreateTodo = async (description: string, deadline: string, areThereAdditionalDetails: boolean, additionalDetails: string): Promise<void> => {
+const CreateTodo = async (todoItem: Todo): Promise<void> => {
     await fetch("https://localhost:7159/api/Todo", {
         method: "POST",
         headers: {
@@ -6,7 +6,7 @@ const CreateTodo = async (description: string, deadline: string, areThereAdditio
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            id: "", description, deadline, areThereAdditionalDetails, additionalDetails
+            ...todoItem
         })
     })
 }
@@ -16,7 +16,8 @@ export type Todo = {
     description: string, 
     deadline: string, 
     areThereAdditionalDetails: boolean, 
-    additionalDetails: string
+    additionalDetails: string,
+    todoIsOverdue: boolean
 }
 
 export default CreateTodo;

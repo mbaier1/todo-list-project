@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import CreateTodo from '../../Network/CreateTodo'
+import CreateTodo, { Todo } from '../../Network/CreateTodo'
 import './CSS/CreateTodoItem.css'
 
 type CreateTodoItemProps = {
@@ -12,6 +12,14 @@ const CreateTodoItem: React.FC<CreateTodoItemProps> = ({ onCreatedTodo }) => {
     const [ areThereAdditionalDetails, setAreThereAdditionalDetails ] = useState<boolean>(false);
     const [ additionalDetails, setAdditionalDetails ] = useState<string>('');
     const [ isClicked, setIsClicked ] = useState(false);
+    const todoItem: Todo = {
+        id: "",
+        description: taskDescription,
+        deadline,
+        areThereAdditionalDetails,
+        additionalDetails,
+        todoIsOverdue: false
+    }
 
     const handleTaskDescription = (description: React.ChangeEvent<HTMLInputElement>): void => {
         setTastDescription(description.target.value)
@@ -36,32 +44,36 @@ const CreateTodoItem: React.FC<CreateTodoItemProps> = ({ onCreatedTodo }) => {
     }
 
     const addTodoItem = async () => {
-        await CreateTodo(taskDescription, deadline, areThereAdditionalDetails, additionalDetails)
+        await CreateTodo(todoItem)
         setIsClicked(false);
         onCreatedTodo();
     }
 
     return (
-        <div className='container'>
-            <button onClick={handleIsClicked}>Create Todo Item</button>
-            { isClicked && (
-            <>
-                <div className='item'>
-                    <h2>Todo Item</h2>
-                    <p>Task: <input type="text" value={taskDescription} onChange={handleTaskDescription}></input></p>
-                </div>
+        <>
+            <div className='button-container'>
+                <button onClick={handleIsClicked}>Create Todo Item</button>
+            </div>
+            <div className='container'>
+                { isClicked && (
+                <>
                     <div className='item'>
-                        <p>Due Date: <input type="date" value={deadline} onChange={handleDeadline}></input></p>
+                        <h2>Todo Item</h2>
+                        <p>Task: <input type="text" value={taskDescription} onChange={handleTaskDescription}></input></p>
                     </div>
-                    <div className='item'>
-                        <p>Additional Details <input type="checkbox" checked={areThereAdditionalDetails} onClick={handleAreThereAdditionalDetails}></input></p>
-                        {areThereAdditionalDetails && <input type="text" value={additionalDetails} onChange={handleAdditionalDetails}></input>}
-                    </div>
-                    <div className='item submit-button'>
-                        <button onClick={addTodoItem}>Create</button>
-                    </div>
-            </>)}
-        </div> 
+                        <div className='item'>
+                            <p>Due Date: <input type="date" value={deadline} onChange={handleDeadline}></input></p>
+                        </div>
+                        <div className='item'>
+                            <p>Additional Details <input type="checkbox" checked={areThereAdditionalDetails} onClick={handleAreThereAdditionalDetails}></input></p>
+                            {areThereAdditionalDetails && <input type="text" value={additionalDetails} onChange={handleAdditionalDetails}></input>}
+                        </div>
+                        <div className='item submit-button'>
+                            <button onClick={addTodoItem}>Create</button>
+                        </div>
+                </>)}
+            </div> 
+    </>
     )
 }
 

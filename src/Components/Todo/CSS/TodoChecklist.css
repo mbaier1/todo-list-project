@@ -7,5 +7,10 @@
     justify-content: space-around;
     border-style: solid;
     border-color: #ddffff;
+}
 
+.checkbox-complete {
+    border:0px;
+    width: 15%;
+    height: 1.5rem;
 }
