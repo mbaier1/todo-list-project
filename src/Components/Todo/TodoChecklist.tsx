@@ -15,8 +15,6 @@ const TodoChecklist = () => {
         getTodos();
     }, []);
 
-    const todoItems = GetTodos();
-
     return (
         <ul>
             <li className='todo-container'>
