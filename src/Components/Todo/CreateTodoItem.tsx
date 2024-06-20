@@ -2,7 +2,11 @@ import { useState } from 'react';
 import CreateTodo from '../../Network/CreateTodo'
 import './CSS/CreateTodoItem.css'
 
-const CreateTodoItem = () => {
+type CreateTodoItemProps = {
+    onCreatedTodo: () => void;
+}
+
+const CreateTodoItem: React.FC<CreateTodoItemProps> = ({ onCreatedTodo }) => {
     const [ taskDescription, setTastDescription ] = useState<string>('');
     const [ deadline, setDeadline ] = useState<string>('');
     const [ areThereAdditionalDetails, setAreThereAdditionalDetails ] = useState<boolean>(false);
@@ -31,14 +35,15 @@ const CreateTodoItem = () => {
         setIsClicked(true)
     }
 
-    const addTodoItem = () => {
-        CreateTodo(taskDescription, deadline, areThereAdditionalDetails, additionalDetails)
+    const addTodoItem = async () => {
+        await CreateTodo(taskDescription, deadline, areThereAdditionalDetails, additionalDetails)
         setIsClicked(false);
+        onCreatedTodo();
     }
 
     return (
         <div className='container'>
-            <button onClick={handleIsClicked}>Create Doto Item</button>
+            <button onClick={handleIsClicked}>Create Todo Item</button>
             { isClicked && (
             <>
                 <div className='item'>

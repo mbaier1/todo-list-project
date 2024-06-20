@@ -1,5 +1,5 @@
-const CreateTodo = (description: string, deadline: string, areThereAdditionalDetails: boolean, additionalDetails: string): void => {
-    fetch("https://localhost:7159/api/Todo", {
+const CreateTodo = async (description: string, deadline: string, areThereAdditionalDetails: boolean, additionalDetails: string): Promise<void> => {
+    await fetch("https://localhost:7159/api/Todo", {
         method: "POST",
         headers: {
             "Accept": 'application/json',

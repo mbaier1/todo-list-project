@@ -3,18 +3,11 @@ import { Todo } from "../../Network/CreateTodo";
 import GetTodos from "../../Network/GetTodos";
 import './CSS/TodoChecklist.css'
 
+type TodoChecklistProps = {
+    todos: Todo[];
+}
 
-const TodoChecklist = () => {
-    const [todos, setTodos] = useState<Todo[]>([]);
-    useEffect(() => {
-        const getTodos = async () => {
-            const data = await GetTodos();
-            setTodos(data);
-        };
-
-        getTodos();
-    }, []);
-
+const TodoChecklist: React.FC<TodoChecklistProps> = ({ todos }) => {
     return (
         <ul>
             <li className='todo-container'>
