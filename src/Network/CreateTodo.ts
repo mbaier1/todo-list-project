@@ -1,3 +1,4 @@
+
 const CreateTodo = async (todoItem: Todo): Promise<void> => {
     await fetch("https://localhost:7159/api/Todo", {
         method: "POST",
@@ -17,7 +18,8 @@ export type Todo = {
     deadline: string, 
     areThereAdditionalDetails: boolean, 
     additionalDetails: string,
-    todoIsOverdue: boolean
+    todoIsOverdue: boolean,
+    todoIsCompleted: boolean
 }
 
 export default CreateTodo;

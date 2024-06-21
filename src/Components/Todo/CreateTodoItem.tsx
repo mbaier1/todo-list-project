@@ -18,7 +18,8 @@ const CreateTodoItem: React.FC<CreateTodoItemProps> = ({ onCreatedTodo }) => {
         deadline,
         areThereAdditionalDetails,
         additionalDetails,
-        todoIsOverdue: false
+        todoIsOverdue: false,
+        todoIsCompleted: false
     }
 
     const handleTaskDescription = (description: React.ChangeEvent<HTMLInputElement>): void => {
@@ -65,7 +66,7 @@ const CreateTodoItem: React.FC<CreateTodoItemProps> = ({ onCreatedTodo }) => {
                             <p>Due Date: <input type="date" value={deadline} onChange={handleDeadline}></input></p>
                         </div>
                         <div className='item'>
-                            <p>Additional Details <input type="checkbox" checked={areThereAdditionalDetails} onClick={handleAreThereAdditionalDetails}></input></p>
+                            <p>Additional Details <input type="checkbox" checked={areThereAdditionalDetails} onChange={handleAreThereAdditionalDetails}></input></p>
                             {areThereAdditionalDetails && <input type="text" value={additionalDetails} onChange={handleAdditionalDetails}></input>}
                         </div>
                         <div className='item submit-button'>

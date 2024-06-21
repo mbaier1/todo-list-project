@@ -9,7 +9,6 @@ const GetTodos = async (): Promise<Todo[]> => {
         }
     });
     const data = await response.json();
-    console.log(data);
     return data as Todo[];
 }
 
