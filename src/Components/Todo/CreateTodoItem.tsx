@@ -21,7 +21,7 @@ const CreateTodoItem: React.FC<CreateTodoItemProps> = ({ onCreatedTodo }) => {
         todoIsOverdue: false,
         todoIsCompleted: false,
         subTodos: [],
-        hasLessThanTwoSubTodos: true
+        hasLessThanTwoSubTodos: true,
     }
 
     const handleTaskDescription = (descriptionEvent: React.ChangeEvent<HTMLInputElement>): void => {

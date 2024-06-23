@@ -22,7 +22,7 @@ export type Todo = {
     todoIsOverdue: boolean,
     todoIsCompleted: boolean,
     subTodos: SubTodo[],
-    hasLessThanTwoSubTodos: Boolean
+    hasLessThanTwoSubTodos: boolean,
 }
 
 export default CreateTodo;

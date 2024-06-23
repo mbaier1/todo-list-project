@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { Todo } from "../../Network/CreateTodo";
 import CreateSubTodoItem from "./CreateSubTodoItem";
 import { SubTodo } from "../../Network/CreateSubTodo";
@@ -13,11 +13,11 @@ type TodoChecklistProps = {
     completeTodo: (todoItem: Todo) => void,
     createSubTodo: (todoId: string, subTodoItem: SubTodo) => void,
     deleteSubTodo: (subTodoItem: SubTodo) => void,
-    completeSubTodo: (subTodoItem: SubTodo) => void,
+    completeSubTodo: (todoId: string, subTodoItem: SubTodo) => void,
 }
 
 const TodoChecklist: React.FC<TodoChecklistProps> = ({ todos,  deleteTodo, completeTodo, createSubTodo, deleteSubTodo, completeSubTodo }) => {
-
+    const [ toggleTodo, setToggleTodo ] = useState<boolean>(true);
 
     const handleRemove = (todoItem: Todo) => {
         deleteTodo(todoItem);
@@ -32,13 +32,13 @@ const TodoChecklist: React.FC<TodoChecklistProps> = ({ todos,  deleteTodo, compl
         createSubTodo(todoId, subTodoItem)
     }
 
-    const handleCompleteSubTodo = (subTodo: SubTodo): void => {
+    const handleDeleteSubTodo = (subTodo: SubTodo): void => {
         deleteSubTodo(subTodo);
     }
 
-    const handleDeleteSubTodo = (subTodo: SubTodo): void => {
+    const handleCompleteSubTodo = (todoId: string, subTodo: SubTodo): void => {
         const updatedSubTodo = { ...subTodo, todoIsCompleted: !subTodo.subTodoIsCompleted };
-        completeSubTodo(updatedSubTodo);
+        completeSubTodo(todoId, updatedSubTodo);
     }
 
     return (
@@ -51,7 +51,8 @@ const TodoChecklist: React.FC<TodoChecklistProps> = ({ todos,  deleteTodo, compl
             </li>
             {
                 todos.map(t => (
-                    <><li style={OverdueRedBackgroundOrEmpty(t.todoIsOverdue)} className='todo-container' key={t.id}>
+                    <>
+                    <li style={OverdueRedBackgroundOrEmpty(t.todoIsOverdue)} className='todo-container' key={t.id}>
                         <input className='checkbox-complete' type='checkbox' onChange={() => { handleCompleteTodo(t); } } checked={t.todoIsCompleted} />
                         <p className='todo-item'>{t.description}</p>
                         <p className='todo-item'>{t.deadline}</p>
@@ -59,9 +60,12 @@ const TodoChecklist: React.FC<TodoChecklistProps> = ({ todos,  deleteTodo, compl
                         {t.hasLessThanTwoSubTodos && <CreateSubTodoItem todoId={t.id} createSubTodoItem={handleCreateSubTodo} />}
                         <button className='todo-item' onClick={() => { handleRemove(t); } }>Delete</button>
                     </li>
-                    <li className='sub-todo-container'>
-                        {t.subTodos?.length > 0 && <SubTodoChecklist subTodos={t.subTodos} completeSubTodo={handleCompleteSubTodo} deleteSubTodo={handleDeleteSubTodo} />}
-                    </li>
+                    {
+                        t.subTodos?.length > 0 && 
+                        <li className='sub-todo-container'>
+                            <SubTodoChecklist todoId={t.id} subTodos={t.subTodos} completeSubTodo={handleCompleteSubTodo} deleteSubTodo={handleDeleteSubTodo} />
+                        </li>
+                    }
                     </>
                 ))
             }

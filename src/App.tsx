@@ -6,6 +6,7 @@ import GetTodos from './Network/GetTodos';
 import DeleteTodo from './Network/DeleteTodo';
 import UpdateTodo from './Network/UpdateTodo';
 import CreateSubTodo, { SubTodo } from './Network/CreateSubTodo';
+import UpdateSubTodo from './Network/UpdateSubTodo';
 
 const  App = () => {
   const [ todos, setTodos ] = useState<Todo[]>([]);
@@ -34,8 +35,9 @@ const  App = () => {
     getAllTodos();
   }
 
-  const handleCompleteSubTodo = () => {
-
+  const handleCompleteSubTodo = async (todoId: string, subTodoItem: SubTodo) => {
+    await UpdateSubTodo(todoId, subTodoItem);
+    getAllTodos();
   }
 
   const handleDeleteSubTodo = () => {
