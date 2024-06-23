@@ -1,3 +1,4 @@
+import { SubTodo } from "./CreateSubTodo"
 
 const CreateTodo = async (todoItem: Todo): Promise<void> => {
     await fetch("https://localhost:7159/api/Todo", {
@@ -19,7 +20,9 @@ export type Todo = {
     areThereAdditionalDetails: boolean, 
     additionalDetails: string,
     todoIsOverdue: boolean,
-    todoIsCompleted: boolean
+    todoIsCompleted: boolean,
+    subTodos: SubTodo[],
+    hasLessThanTwoSubTodos: Boolean
 }
 
 export default CreateTodo;

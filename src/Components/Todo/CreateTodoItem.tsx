@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import CreateTodo, { Todo } from '../../Network/CreateTodo'
 import './CSS/CreateTodoItem.css'
 
@@ -19,15 +19,17 @@ const CreateTodoItem: React.FC<CreateTodoItemProps> = ({ onCreatedTodo }) => {
         areThereAdditionalDetails,
         additionalDetails,
         todoIsOverdue: false,
-        todoIsCompleted: false
+        todoIsCompleted: false,
+        subTodos: [],
+        hasLessThanTwoSubTodos: true
     }
 
-    const handleTaskDescription = (description: React.ChangeEvent<HTMLInputElement>): void => {
-        setTastDescription(description.target.value)
+    const handleTaskDescription = (descriptionEvent: React.ChangeEvent<HTMLInputElement>): void => {
+        setTastDescription(descriptionEvent.target.value)
     }
 
-    const handleDeadline = (date: React.ChangeEvent<HTMLInputElement>): void => {
-        setDeadline(date.target.value)
+    const handleDeadline = (dateEvent: React.ChangeEvent<HTMLInputElement>): void => {
+        setDeadline(dateEvent.target.value)
     }
 
     const handleAreThereAdditionalDetails = (): void => {
@@ -36,8 +38,8 @@ const CreateTodoItem: React.FC<CreateTodoItemProps> = ({ onCreatedTodo }) => {
             setAdditionalDetails('')
     }
 
-    const handleAdditionalDetails = (details: React.ChangeEvent<HTMLInputElement>): void => {
-        setAdditionalDetails(details.target.value);
+    const handleAdditionalDetails = (detailsEvent: React.ChangeEvent<HTMLInputElement>): void => {
+        setAdditionalDetails(detailsEvent.target.value);
     }
 
     const handleIsClicked = (): void => {
@@ -74,7 +76,7 @@ const CreateTodoItem: React.FC<CreateTodoItemProps> = ({ onCreatedTodo }) => {
                         </div>
                 </>)}
             </div> 
-    </>
+        </>
     )
 }
 

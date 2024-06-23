@@ -1,12 +1,31 @@
-.todo-container {
+.todo-top-container {
     top: 10px;
-    width: 50rem;
+    width: 60rem;
     display: flex;
-    flex-direction: row;
+    flex-flow: row nowrap;
     align-items: center;
-    justify-content: space-around;
+    align-content: center;
+    gap: 20px;
+    justify-content: space-between;
     border-style: solid;
     border-color: #ddffff;
+}
+
+.todo-container, .sub-todo-container {
+    top: 10px;
+    width: 60rem;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    align-content: center;
+    gap: 20px;
+    justify-content: flex-start;
+    border-style: solid;
+    border-color: #ddffff;
+}
+
+.sub-todo-container {
+    margin-left: 50px;
 }
 
 .checkbox-complete {
