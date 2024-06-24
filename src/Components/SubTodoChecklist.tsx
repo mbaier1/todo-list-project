@@ -6,7 +6,7 @@ import OverdueRedBackgroundOrEmpty from "../Styles/OverdueRedBackgroundOrEmpty";
 type SubTodoChecklistProps = {
     todoId: string,
     subTodos: SubTodo[],
-    deleteSubTodo: (subTodoItem: SubTodo) => void,
+    deleteSubTodo: (todoId:string, subTodoItem: SubTodo) => void,
     completeSubTodo: (todoId: string, subTodoItem: SubTodo) => void,
 }
 
@@ -18,7 +18,7 @@ const SubTodoChecklist = ({ todoId, subTodos, deleteSubTodo, completeSubTodo }: 
     }
 
     const handleDeleteSubTodo = (subTodo: SubTodo): void => {
-        deleteSubTodo(subTodo);
+        deleteSubTodo(todoId, subTodo);
     }
 
     return (

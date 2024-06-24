@@ -6,7 +6,7 @@ type CreateTodoItemProps = {
     onCreatedTodo: () => void;
 }
 
-const CreateTodoItem: React.FC<CreateTodoItemProps> = ({ onCreatedTodo }) => {
+const CreateTodoItem = ({ onCreatedTodo }: CreateTodoItemProps) => {
     const [ taskDescription, setTastDescription ] = useState<string>('');
     const [ deadline, setDeadline ] = useState<string>('');
     const [ areThereAdditionalDetails, setAreThereAdditionalDetails ] = useState<boolean>(false);
