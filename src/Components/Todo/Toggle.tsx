@@ -1,12 +1,12 @@
 import React, { ReactNode, useState } from "react"
 
-export type ToggleChildrenProps = {
-    todoId: string,
+export type ToggleProps = {
+    id: string,
     children: ReactNode,
     toggleChildrenElements: (todoId: string, toggle: boolean) => void
 }
 
-const ToggleChildren = ({ todoId, children, toggleChildrenElements }: ToggleChildrenProps) => {
+const Toggle = ({ id: todoId, children, toggleChildrenElements }: ToggleProps) => {
     const [ toggleChilren, setToggleChildren ] = useState<boolean>(true)
 
     const handleToggleChildren = (): void => {
@@ -23,4 +23,4 @@ const ToggleChildren = ({ todoId, children, toggleChildrenElements }: ToggleChil
     )
 }
 
-export default ToggleChildren;
+export default Toggle;
