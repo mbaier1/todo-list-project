@@ -34,10 +34,10 @@ const SubTodoChecklist = ({ todoId, subTodos, deleteSubTodo, completeSubTodo, ha
                     <div key={s.id}>
                         <li style={OverdueRedBackgroundOrEmpty(s.subTodoIsOverdue)} className='sub-todo-container'>
                             <Toggle id={s.id} toggleChildrenElements={toggleSubTodo} >
+                                <p><b>Complete:</b></p>
                                 <input className='checkbox-complete' type='checkbox' onChange={() => {handleCompleteSubTodo(todoId, s)}} checked={s.subTodoIsCompleted}  />
-                                <p>Sub Todo:</p>
-                                <p>{s.description}</p>
-                                {s.areThereAdditionalDetails && <p>{s.additionalDetails}</p>}
+                                <p><b>Description: </b>{s.description}</p>
+                                {s.areThereAdditionalDetails && <p><b>Addtional Details: </b>{s.additionalDetails}</p>}
                                 <button className='todo-item'  onClick={() => {handleDeleteSubTodo(s)}}>Delete</button>
                             </Toggle>
                         </li>
